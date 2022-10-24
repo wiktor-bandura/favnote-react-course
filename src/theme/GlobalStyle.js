@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
 
     *, *::before, *::after {
         box-sizing: border-box;
-        -webkit-font-0smoothing: antialiased;
-        -moz-osc-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     html {

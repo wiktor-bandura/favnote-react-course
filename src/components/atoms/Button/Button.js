@@ -7,7 +7,7 @@ const Button = styled.button`
   border: 0;
   border-radius: 50px;
   font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.light};
   font-size: 1rem;
   text-transform: uppercase;
 
