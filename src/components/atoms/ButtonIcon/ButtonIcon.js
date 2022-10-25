@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ButtonIcon = styled.button`
   width: 67px;
@@ -9,7 +9,13 @@ const ButtonIcon = styled.button`
   background-repeat: no-repeat;
   background-size: 40%;
   background-position: 50% 50%;
-  background-color: #fff;
+  background-color: transparent;
   outline: none;
+
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: #fff;
+    `}
 `;
 export default ButtonIcon;
