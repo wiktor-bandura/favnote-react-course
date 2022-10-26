@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { withRouter } from 'storybook-addon-react-router-v6';
 import BulbIcon from '../../../assets/icons/bulb.svg';
 import LogoutIcon from '../../../assets/icons/logout.svg';
 import PenIcon from '../../../assets/icons/pen.svg';
@@ -24,6 +25,7 @@ export default {
         <Story />
       </YellowBackground>
     ),
+    withRouter,
   ],
 };
 
