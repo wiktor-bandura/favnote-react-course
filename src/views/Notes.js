@@ -1,3 +1,39 @@
-const Notes = () => <h1>Notes view</h1>;
+import UserPageTemplate from '../templates/UserPageTempate';
+import Card from '../components/molecules/Card/Card';
+
+const notes = [
+  {
+    title: 'Wake me up when Vue ends',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
+    created: '1 day',
+  },
+  {
+    title: 'Como es An Gular?',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
+    created: '1 day',
+  },
+  {
+    title: 'Du bist Reactish',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
+    created: '5 days',
+  },
+  {
+    title: 'Reactuj sińô kto moze!',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
+    created: '10 days',
+  },
+];
+
+const Notes = () => (
+  <UserPageTemplate pageType="note">
+    {notes.map(({ title, content, created }) => (
+      <Card key={title} cardType="note" title={title} content={content} created={created} />
+    ))}
+  </UserPageTemplate>
+);
 
 export default Notes;

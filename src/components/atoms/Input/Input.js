@@ -24,6 +24,7 @@ const Input = styled.input`
       background-size: 15px;
       background-position: 10px 50%;
       background-repeat: no-repeat;
+      margin-bottom: 2rem;
     `}
 `;
 

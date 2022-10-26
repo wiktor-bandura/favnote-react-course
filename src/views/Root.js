@@ -6,18 +6,15 @@ import Articles from './Articles';
 import Twitters from './Twitters';
 
 const Root = () => (
-  <MainTemplate>
-    <BrowserRouter>
+  <BrowserRouter>
+    <MainTemplate>
       <Routes>
         <Route exact path="/" element={<Notes />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/twitters" element={<Twitters />} />
       </Routes>
-      <h1>Notes</h1>
-      <h1>Twitter</h1>
-      <h1>Articles</h1>
-    </BrowserRouter>
-  </MainTemplate>
+    </MainTemplate>
+  </BrowserRouter>
 );
 
 export default Root;

@@ -14,30 +14,41 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   width: 8rem;
   height: 100vh;
-  background-color: ${({ theme }) => theme.note};
+  background-color: ${({ activeColor, theme }) => (activeColor ? theme[activeColor] : theme.note)};
   position: fixed;
   top: 0;
   left: 0;
-`;
-
-const IconsWrapper = styled.div`
-  margin-top: 10rem;
+  padding: 2rem;
 `;
 
 const StyledLogo = styled.img`
-  position: absolute;
   width: 4rem;
-  top: 3rem;
 `;
 
-const Sidebar = () => (
-  <StyledWrapper>
+const Sidebar = ({ pageType }) => (
+  <StyledWrapper activeColor={pageType}>
     <StyledLogo src={Logo} />
-    <IconsWrapper>
-      <ButtonIcon as={NavLink} to="/" icon={PenIcon} />
-      <ButtonIcon as={NavLink} to="/twitters" icon={TwitterIcon} />
-      <ButtonIcon as={NavLink} to="/articles" icon={BulbIcon} />
-    </IconsWrapper>
+    <div>
+      <ButtonIcon
+        as={NavLink}
+        to="/"
+        icon={PenIcon}
+        style={({ isActive }) => isActive && 'active'}
+        end
+      />
+      <ButtonIcon
+        as={NavLink}
+        to="/twitters"
+        icon={TwitterIcon}
+        style={({ isActive }) => isActive && 'active'}
+      />
+      <ButtonIcon
+        as={NavLink}
+        to="/articles"
+        icon={BulbIcon}
+        style={({ isActive }) => isActive && 'active'}
+      />
+    </div>
     <ButtonIcon icon={LogoutIcon} />
   </StyledWrapper>
 );
