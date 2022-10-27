@@ -1,4 +1,4 @@
-import UserPageTemplate from '../templates/UserPageTempate';
+import GridTemplate from '../templates/GridTemplate';
 import Card from '../components/molecules/Card/Card';
 
 const twitters = [
@@ -33,18 +33,18 @@ const twitters = [
 ];
 
 const Twitters = () => (
-  <UserPageTemplate pageType="twitter">
+  <GridTemplate pageType="twitters">
     {twitters.map(({ title, content, created, twitterName }) => (
       <Card
         key={title}
-        cardType="twitter"
+        cardType="twitters"
         title={title}
         content={content}
         created={created}
         twitterName={twitterName}
       />
     ))}
-  </UserPageTemplate>
+  </GridTemplate>
 );
 
 export default Twitters;

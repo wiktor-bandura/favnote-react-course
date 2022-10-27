@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import BulbIcon from '../../../assets/icons/bulb.svg';
 import LogoutIcon from '../../../assets/icons/logout.svg';
 import PenIcon from '../../../assets/icons/pen.svg';
@@ -31,7 +32,7 @@ const Sidebar = ({ pageType }) => (
     <div>
       <ButtonIcon
         as={NavLink}
-        to="/"
+        to="/notes"
         icon={PenIcon}
         style={({ isActive }) => isActive && 'active'}
         end
@@ -52,5 +53,13 @@ const Sidebar = ({ pageType }) => (
     <ButtonIcon icon={LogoutIcon} />
   </StyledWrapper>
 );
+
+Sidebar.propTypes = {
+  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+};
+
+Sidebar.defaultProps = {
+  pageType: 'notes',
+};
 
 export default Sidebar;
