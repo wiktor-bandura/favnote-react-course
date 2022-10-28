@@ -5,6 +5,7 @@
       "plugin:react/jsx-runtime",
       "prettier"
     ],
+    "parser": "@babel/eslint-parser",
     "env": {
       "jest": true
     },
@@ -27,6 +28,8 @@
       "import/prefer-default-export": 0,
       "react/jsx-props-no-spreading": 0,
       "react/no-unescaped-entities": 0,
-      "react/prop-types": 0
+      "react/prop-types": 0,
+      "react/state-in-constructor": 0,
+      "react/no-unused-state": 0
     }
 }

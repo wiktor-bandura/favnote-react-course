@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
+import { Navigate } from 'react-router-dom';
 import Heading from '../../atoms/Heading/Heading';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import Button from '../../atoms/Button/Button';
@@ -70,25 +72,45 @@ const StyledNoteLink = styled.a`
   font-weight: ${({ theme }) => theme.bold};
 `;
 
-const Card = ({ cardType, title, created, articleUrl, twitterName, content }) => (
-  <StyledWrapper>
-    <InnerWrapper activeColor={cardType}>
-      <StyledHeading>{title}</StyledHeading>
-      <DateInfo>{created}</DateInfo>
-      {cardType === 'twitters' && (
-        <StyledAvatar src="https://pbs.twimg.com/profile_images/1583787461968289792/Dg_ZwGgU_400x400.jpg" />
-      )}
-      {cardType === 'articles' && <StyledLinkButton href={articleUrl} />}
-    </InnerWrapper>
-    <InnerWrapper flex>
-      <Paragraph>
-        {content}
-        <StyledNoteLink>Read more</StyledNoteLink>
-      </Paragraph>
-      <Button secondary>REMOVE</Button>
-    </InnerWrapper>
-  </StyledWrapper>
-);
+class Card extends Component {
+  state = {
+    redirect: false,
+  };
+
+  handleCardClick = () =>
+    this.setState({
+      redirect: true,
+    });
+
+  render() {
+    const { cardType, title, created, articleUrl, twitterName, content, id } = this.props;
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Navigate to={`/${cardType}/${id}`} replace />;
+    }
+
+    return (
+      <StyledWrapper onClick={this.handleCardClick}>
+        <InnerWrapper activeColor={cardType}>
+          <StyledHeading>{title}</StyledHeading>
+          <DateInfo>{created}</DateInfo>
+          {cardType === 'twitters' && (
+            <StyledAvatar src="https://pbs.twimg.com/profile_images/1583787461968289792/Dg_ZwGgU_400x400.jpg" />
+          )}
+          {cardType === 'articles' && <StyledLinkButton href={articleUrl} />}
+        </InnerWrapper>
+        <InnerWrapper flex>
+          <Paragraph>
+            {content}
+            <StyledNoteLink>Read more</StyledNoteLink>
+          </Paragraph>
+          <Button secondary>REMOVE</Button>
+        </InnerWrapper>
+      </StyledWrapper>
+    );
+  }
+}
 
 Card.propTypes = {
   cardType: PropTypes.oneOf(['notes', 'twitters', 'articles']),

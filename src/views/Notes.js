@@ -3,24 +3,28 @@ import Card from '../components/molecules/Card/Card';
 
 const notes = [
   {
+    id: 1,
     title: 'Wake me up when Vue ends',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
     created: '1 day',
   },
   {
+    id: 2,
     title: 'Como es An Gular?',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
     created: '1 day',
   },
   {
+    id: 3,
     title: 'Du bist Reactish',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
     created: '5 days',
   },
   {
+    id: 4,
     title: 'Reactuj sińô kto moze!',
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
@@ -30,8 +34,8 @@ const notes = [
 
 const Notes = () => (
   <GridTemplate pageType="notes">
-    {notes.map(({ title, content, created }) => (
-      <Card key={title} cardType="notes" title={title} content={content} created={created} />
+    {notes.map(({ title, content, created, id }) => (
+      <Card key={id} id={id} cardType="notes" title={title} content={content} created={created} />
     ))}
   </GridTemplate>
 );

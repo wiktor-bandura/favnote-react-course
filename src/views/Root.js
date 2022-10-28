@@ -5,16 +5,19 @@ import Notes from './Notes';
 import Articles from './Articles';
 import Twitters from './Twitters';
 import DetailsPage from './DetailsPage';
+import { routes } from '../routes';
 
 const Root = () => (
   <BrowserRouter>
     <MainTemplate>
       <Routes>
-        <Route exact path="/notes" element={<Notes />} />
-        <Route path="/notes/:id" element={<DetailsPage />} />
-        <Route exact path="/articles" element={<Articles />} />
-        <Route exact path="/twitters" element={<Twitters />} />
-        <Route path="*" element={<Navigate to="/notes" replace />} />
+        <Route path={routes.notes} element={<Notes />} />
+        <Route path={routes.note} element={<DetailsPage />} />
+        <Route path={routes.articles} element={<Articles />} />
+        <Route path={routes.article} element={<DetailsPage />} />
+        <Route path={routes.twitters} element={<Twitters />} />
+        <Route path={routes.twitter} element={<DetailsPage />} />
+        <Route path={routes.home} element={<Navigate to={routes.notes} replace />} />
       </Routes>
     </MainTemplate>
   </BrowserRouter>

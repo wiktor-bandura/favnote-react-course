@@ -17,6 +17,6 @@ UserPageTemplate.propTypes = {
 };
 
 UserPageTemplate.defaultProps = {
-  pageType: 'note',
+  pageType: 'notes',
 };
 export default UserPageTemplate;

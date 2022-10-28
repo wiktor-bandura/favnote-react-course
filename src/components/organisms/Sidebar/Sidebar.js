@@ -35,7 +35,6 @@ const Sidebar = ({ pageType }) => (
         to="/notes"
         icon={PenIcon}
         style={({ isActive }) => isActive && 'active'}
-        end
       />
       <ButtonIcon
         as={NavLink}
