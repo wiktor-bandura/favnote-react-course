@@ -37,7 +37,7 @@ const StyledCreatedParagraph = styled(Paragraph)`
 const StyledLink = styled.a`
   display: block;
   padding: 1rem;
-  text-decoration: underline;
+  color: ${({ theme }) => theme.black};
 `;
 
 const DetailsTemplate = ({ pageType, title, content, twitterURL, articleURL, created }) => (
@@ -45,12 +45,16 @@ const DetailsTemplate = ({ pageType, title, content, twitterURL, articleURL, cre
     <StyledWrapper>
       <Heading>{title}</Heading>
       <StyledCreatedParagraph>{created}</StyledCreatedParagraph>
-      {pageType === 'twitters' ? <StyledTwitterImage src={twitterURL} /> : null}
+      {pageType === 'twitters' ? (
+        <StyledTwitterImage alt="twitter account avatar" src={twitterURL} />
+      ) : null}
 
       <Paragraph>{content}</Paragraph>
 
       {pageType !== 'notes' ? (
-        <StyledLink href={articleURL}>Open this {pageType.replace('s', '')} </StyledLink>
+        <StyledLink target="_blank" href={pageType === 'articles' ? articleURL : twitterURL}>
+          Open this {pageType.replace('s', '')}{' '}
+        </StyledLink>
       ) : null}
       <Button pageType={pageType}>Edit / Save</Button>
       <StyledButton>Remove note </StyledButton>

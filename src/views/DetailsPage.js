@@ -25,7 +25,7 @@ const DetailsPage = () => {
     et posuere odio posuere et.`,
     twitterURL:
       'https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg',
-    articleURL: 'https://fskorusa.archidiecezja.wroc.pl',
+    articleURL: 'http://www.fskorusa.archidiecezja.wroc.pl',
     created: '1 day ago',
   };
 
@@ -35,7 +35,7 @@ const DetailsPage = () => {
       title={example.title}
       content={example.content}
       twitterURL={example.twitterURL}
-      article={example.articleURL}
+      articleURL={example.articleURL}
       crated={example.created}
     />
   );

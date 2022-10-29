@@ -1,42 +1,9 @@
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import GridTemplate from '../templates/GridTemplate';
 import Card from '../components/molecules/Card/Card';
 
-const twitters = [
-  {
-    id: 1,
-    title: 'Hello Roman',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '1 day',
-    twitterName: 'hello_roman',
-  },
-  {
-    id: 2,
-    title: 'Redux guy',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '1 day',
-    twitterName: 'dan_abramov',
-  },
-  {
-    id: 3,
-    title: 'React router stuff',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '5 days',
-    twitterName: 'mjackson',
-  },
-  {
-    id: 4,
-    title: 'Super animacje!',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, tempora quibusdam natus modi tempore esse adipisci, dolore odit animi',
-    created: '10 days',
-    twitterName: 'sarah_edo',
-  },
-];
-
-const Twitters = () => (
+const Twitters = ({ twitters }) => (
   <GridTemplate pageType="twitters">
     {twitters.map(({ title, content, created, twitterName, id }) => (
       <Card
@@ -52,4 +19,32 @@ const Twitters = () => (
   </GridTemplate>
 );
 
-export default Twitters;
+Twitters.propTypes = {
+  twitters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      cardType: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      twitterName: PropTypes.string.isRequired,
+      created: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+Twitters.defaultProps = {
+  twitters: [
+    {
+      id: 1,
+      cardType: 'notes',
+      title: 'Hello world',
+      content: 'lorem ipsum dolor sit amet',
+      twitterName: 'www.youtube.com',
+      created: '1 day',
+    },
+  ],
+};
+
+const MapStateToProps = ({ twitters }) => ({ twitters });
+
+export default connect(MapStateToProps)(Twitters);
