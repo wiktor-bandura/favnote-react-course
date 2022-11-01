@@ -2,10 +2,12 @@ import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Heading from '../../atoms/Heading/Heading';
 import Paragraph from '../../atoms/Paragraph/Paragraph';
 import Button from '../../atoms/Button/Button';
 import LinkIcon from '../../../assets/icons/link.svg';
+import { removeItem } from '../../../actions';
 
 const StyledWrapper = styled.div`
   min-height: 380px;
@@ -83,7 +85,7 @@ class Card extends Component {
     });
 
   render() {
-    const { cardType, title, created, articleUrl, twitterName, content, id } = this.props;
+    const { cardType, title, created, articleUrl, twitterName, content, id, remove } = this.props;
     const { redirect } = this.state;
 
     if (redirect) {
@@ -105,7 +107,9 @@ class Card extends Component {
             {content}
             <StyledNoteLink>Read more</StyledNoteLink>
           </Paragraph>
-          <Button secondary>REMOVE</Button>
+          <Button onClick={() => remove(cardType, id)} secondary>
+            REMOVE
+          </Button>
         </InnerWrapper>
       </StyledWrapper>
     );
@@ -119,6 +123,7 @@ Card.propTypes = {
   twitterName: PropTypes.string,
   articleUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 Card.defaultProps = {
@@ -126,5 +131,8 @@ Card.defaultProps = {
   twitterName: null,
   articleUrl: null,
 };
+const mapDispatchToProps = (dispatch) => ({
+  remove: (itemType, id) => dispatch(removeItem(itemType, id)),
+});
 
-export default Card;
+export default connect(null, mapDispatchToProps)(Card);

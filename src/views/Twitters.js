@@ -34,14 +34,14 @@ Twitters.propTypes = {
 
 Twitters.defaultProps = {
   twitters: [
-    {
+    PropTypes.shape({
       id: 1,
       cardType: 'notes',
       title: 'Hello world',
       content: 'lorem ipsum dolor sit amet',
       twitterName: 'www.youtube.com',
       created: '1 day',
-    },
+    }),
   ],
 };
 
