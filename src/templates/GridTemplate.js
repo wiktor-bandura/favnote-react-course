@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import UserPageTemplate from './UserPageTempalte';
 import Input from '../components/atoms/Input/Input';
 import Heading from '../components/atoms/Heading/Heading';
+import withContext from '../HOC/withContext';
 
 const StyledGridWrapper = styled.div`
   display: grid;
@@ -21,12 +22,12 @@ const StyledHeading = styled(Heading)`
   }
 `;
 
-const GridTemplate = ({ children, pageType }) => (
-  <UserPageTemplate pageType={pageType}>
+const GridTemplate = ({ children, pageContext }) => (
+  <UserPageTemplate>
     <StyledPageHeader>
       <Input placeholder="Search" search />
-      <StyledHeading as="h1">{pageType}</StyledHeading>
-      <StyledHeading small>12 {pageType}</StyledHeading>
+      <StyledHeading as="h1">{pageContext}</StyledHeading>
+      <StyledHeading small>12 {pageContext}</StyledHeading>
     </StyledPageHeader>
     <StyledGridWrapper>{children}</StyledGridWrapper>
   </UserPageTemplate>
@@ -34,10 +35,10 @@ const GridTemplate = ({ children, pageType }) => (
 
 GridTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
 };
 
 GridTemplate.defaultProps = {
-  pageType: 'notes',
+  pageContext: 'notes',
 };
-export default GridTemplate;
+export default withContext(GridTemplate);

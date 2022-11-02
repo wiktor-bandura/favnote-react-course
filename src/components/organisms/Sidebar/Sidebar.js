@@ -7,6 +7,7 @@ import PenIcon from '../../../assets/icons/pen.svg';
 import TwitterIcon from '../../../assets/icons/twitter.svg';
 import Logo from '../../../assets/icons/logo.svg';
 import ButtonIcon from '../../atoms/ButtonIcon/ButtonIcon';
+import withContext from '../../../HOC/withContext';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -26,8 +27,8 @@ const StyledLogo = styled.img`
   width: 4rem;
 `;
 
-const Sidebar = ({ pageType }) => (
-  <StyledWrapper activeColor={pageType}>
+const Sidebar = ({ pageContext }) => (
+  <StyledWrapper activeColor={pageContext}>
     <StyledLogo src={Logo} />
     <div>
       <ButtonIcon
@@ -54,11 +55,11 @@ const Sidebar = ({ pageType }) => (
 );
 
 Sidebar.propTypes = {
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
 };
 
 Sidebar.defaultProps = {
-  pageType: 'notes',
+  pageContext: 'notes',
 };
 
-export default Sidebar;
+export default withContext(Sidebar);

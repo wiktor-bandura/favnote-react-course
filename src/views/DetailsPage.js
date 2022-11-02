@@ -29,12 +29,11 @@ const DetailsPage = () => {
 
   return (
     <DetailsTemplate
-      pageType={pageType}
       title={example.title}
       content={example.content}
       twitterURL={example.twitterURL}
       articleURL={example.articleURL}
-      crated={example.created}
+      created={example.created}
     />
   );
 };

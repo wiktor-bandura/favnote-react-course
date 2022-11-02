@@ -5,6 +5,7 @@ import UserPageTemplate from './UserPageTempalte';
 import Button from '../components/atoms/Button/Button';
 import Heading from '../components/atoms/Heading/Heading';
 import Paragraph from '../components/atoms/Paragraph/Paragraph';
+import withContext from '../HOC/withContext';
 
 const StyledTwitterImage = styled.img`
   display: block;
@@ -40,23 +41,23 @@ const StyledLink = styled.a`
   color: ${({ theme }) => theme.black};
 `;
 
-const DetailsTemplate = ({ pageType, title, content, twitterURL, articleURL, created }) => (
-  <UserPageTemplate pageType={pageType}>
+const DetailsTemplate = ({ pageContext, title, content, twitterURL, articleURL, created }) => (
+  <UserPageTemplate pageType={pageContext}>
     <StyledWrapper>
       <Heading>{title}</Heading>
       <StyledCreatedParagraph>{created}</StyledCreatedParagraph>
-      {pageType === 'twitters' ? (
+      {pageContext === 'twitters' ? (
         <StyledTwitterImage alt="twitter account avatar" src={twitterURL} />
       ) : null}
 
       <Paragraph>{content}</Paragraph>
 
-      {pageType !== 'notes' ? (
-        <StyledLink target="_blank" href={pageType === 'articles' ? articleURL : twitterURL}>
-          Open this {pageType.replace('s', '')}{' '}
+      {pageContext !== 'notes' ? (
+        <StyledLink target="_blank" href={pageContext === 'articles' ? articleURL : twitterURL}>
+          Open this {pageContext.replace('s', '')}{' '}
         </StyledLink>
       ) : null}
-      <Button pageType={pageType}>Edit / Save</Button>
+      <Button>Edit / Save</Button>
       <StyledButton>Remove note </StyledButton>
     </StyledWrapper>
   </UserPageTemplate>
@@ -64,7 +65,7 @@ const DetailsTemplate = ({ pageType, title, content, twitterURL, articleURL, cre
 
 UserPageTemplate.propTypes = {
   children: PropTypes.arrayOf(PropTypes.node).isRequired,
-  pageType: PropTypes.oneOf(['notes', 'twitters', 'articles']),
+  pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string,
   content: PropTypes.string,
   twitterURL: PropTypes.string,
@@ -73,7 +74,7 @@ UserPageTemplate.propTypes = {
 };
 
 UserPageTemplate.defaultProps = {
-  pageType: 'notes',
+  pageContext: 'notes',
 };
 
-export default DetailsTemplate;
+export default withContext(DetailsTemplate);

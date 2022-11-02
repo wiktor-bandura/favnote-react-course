@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import GlobalStyle from '../theme/GlobalStyle';
 import { theme } from '../theme/mainTheme';
 import { withRouter } from '../withrouter/withRouter';
+import withContext from '../HOC/withContext';
 import PageContext from '../context';
 
 class MainTemplate extends React.Component {
@@ -28,14 +29,10 @@ class MainTemplate extends React.Component {
 
     const [currentPage] = pageTypes.filter((page) => pathname.includes(page));
 
-    console.log(currentPage);
-
     if (prevState.pageType !== currentPage) {
       this.setState({
         pageType: currentPage,
       });
-
-      console.log(this.state);
     }
   }
 

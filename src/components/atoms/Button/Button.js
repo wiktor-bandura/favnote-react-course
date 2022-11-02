@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
+import withContext from '../../../HOC/withContext';
 
 const Button = styled.button`
-  background-color: ${({ theme, pageType }) => theme[pageType]};
+  background-color: ${({ theme, pageContext }) => theme[pageContext]};
   width: 220px;
   height: 47px;
   border: 0;
@@ -21,4 +22,4 @@ const Button = styled.button`
     `}
 `;
 
-export default Button;
+export default withContext(Button);
