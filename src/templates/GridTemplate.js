@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import UserPageTemplate from './UserPageTempalte';
-import Sidebar from '../components/organisms/Sidebar/Sidebar';
 import Input from '../components/atoms/Input/Input';
 import Heading from '../components/atoms/Heading/Heading';
 

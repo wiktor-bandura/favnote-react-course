@@ -22,12 +22,12 @@ const Twitters = ({ twitters }) => (
 Twitters.propTypes = {
   twitters: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      cardType: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-      twitterName: PropTypes.string.isRequired,
-      created: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      cardType: PropTypes.string,
+      title: PropTypes.string,
+      content: PropTypes.string,
+      twitterName: PropTypes.string,
+      created: PropTypes.string,
     }),
   ),
 };

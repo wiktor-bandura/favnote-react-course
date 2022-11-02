@@ -1,6 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { routes } from '../routes';
 import DetailsTemplate from '../templates/DetailsTemplate';
 
 const DetailsPage = () => {
