@@ -52,7 +52,7 @@ const StyledAvatar = styled.img`
   position: absolute;
   right: 25px;
   top: 25px;
-  z-index: 2;
+  z-index: 1;
 `;
 
 const StyledLinkButton = styled.a`
@@ -86,8 +86,7 @@ class Card extends Component {
     });
 
   render() {
-    const { pageContext, title, created, articleUrl, twitterName, content, id, remove } =
-      this.props;
+    const { pageContext, title, created, articleUrl, content, id, remove } = this.props;
     const { redirect } = this.state;
 
     if (redirect) {
@@ -122,7 +121,6 @@ Card.propTypes = {
   pageContext: PropTypes.oneOf(['notes', 'twitters', 'articles']),
   title: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
-  twitterName: PropTypes.string,
   articleUrl: PropTypes.string,
   content: PropTypes.string.isRequired,
   remove: PropTypes.func.isRequired,
@@ -130,7 +128,6 @@ Card.propTypes = {
 
 Card.defaultProps = {
   pageContext: 'notes',
-  twitterName: null,
   articleUrl: null,
 };
 const mapDispatchToProps = (dispatch) => ({
