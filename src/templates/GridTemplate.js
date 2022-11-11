@@ -67,7 +67,7 @@ class GridTemplate extends React.Component {
             />
           </>
         </StyledGridWrapper>
-        <NewItemBar isVisible={isNewItemVisible} />
+        <NewItemBar handleClose={this.handleNewItemToggle} isVisible={isNewItemVisible} />
       </UserPageTemplate>
     );
   }

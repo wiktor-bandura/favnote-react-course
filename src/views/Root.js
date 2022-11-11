@@ -7,6 +7,7 @@ import Notes from './Notes';
 import Articles from './Articles';
 import Twitters from './Twitters';
 import DetailsPage from './DetailsPage';
+import LoginPage from './LoginPage';
 import { routes } from '../routes';
 
 const Root = () => (
@@ -20,6 +21,7 @@ const Root = () => (
           <Route path={routes.article} element={<DetailsPage />} />
           <Route path={routes.twitters} element={<Twitters />} />
           <Route path={routes.twitter} element={<DetailsPage />} />
+          <Route path={routes.login} element={<LoginPage />} />
           <Route path={routes.home} element={<Navigate to={routes.notes} replace />} />
         </Routes>
       </MainTemplate>

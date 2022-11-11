@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Input from '../../atoms/Input/Input';
@@ -41,7 +41,7 @@ const StyledForm = styled(Form)`
   }
 `;
 
-const NewItemBar = ({ pageContext, isVisible, add }) => (
+const NewItemBar = ({ pageContext, isVisible, add, handleClose }) => (
   <StyledWrapper isVisible={isVisible} pageContext={pageContext}>
     <div>
       <Heading>Add a new note</Heading>
@@ -56,6 +56,7 @@ const NewItemBar = ({ pageContext, isVisible, add }) => (
       }}
       onSubmit={(values, { setSubmitting }) => {
         add(pageContext, values);
+        handleClose();
         setSubmitting(false);
       }}
     >
