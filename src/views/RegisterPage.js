@@ -36,7 +36,9 @@ const SubHeading = styled(Heading)`
   font-size: 2rem;
 `;
 
-const LoginPage = () => (
+const StyledLink = styled(NavLink)``;
+
+const RegisterPage = () => (
   <StyledWrapper>
     <Heading>FAV NOTE.</Heading>
     <SubHeading small>Your new favourite online notes experience</SubHeading>
@@ -44,27 +46,27 @@ const LoginPage = () => (
       initialValues={{ username: '', password: '' }}
       onSubmit={({ username, password }) => {
         axios
-          .post('http://localhost:9000/api/user/login', {
+          .post('http://localhost:9000/api/user/register', {
             username,
             password,
           })
-          .then(() => console.log('Login successful'))
+          .then(() => console.log('Registration successful'))
           .catch((err) => console.log(err));
       }}
     >
       {() => (
         <StyledForm>
-          <SubHeading>Log in</SubHeading>
+          <SubHeading>Sign in</SubHeading>
           <Input as={Field} name="username" type="text" placeholder="login" />
           <Input as={Field} name="password" type="password" placeholder="password" />
           <Button activeColor="notes" type="submit">
-            Log in
+            Register
           </Button>
-          <NavLink to="/register">I want to register</NavLink>
+          <NavLink to="/login">I want to log in</NavLink>
         </StyledForm>
       )}
     </Formik>
   </StyledWrapper>
 );
 
-export default LoginPage;
+export default RegisterPage;
