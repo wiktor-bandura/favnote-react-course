@@ -1,11 +1,12 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
 import Heading from '../components/atoms/Heading/Heading';
 import Input from '../components/atoms/Input/Input';
 import Button from '../components/atoms/Button/Button';
+import { authenticateAction } from '../actions';
 
 const StyledWrapper = styled.div`
   width: 100vw;
@@ -36,20 +37,14 @@ const SubHeading = styled(Heading)`
   font-size: 2rem;
 `;
 
-const LoginPage = () => (
+const LoginPage = ({ authenticate }) => (
   <StyledWrapper>
     <Heading>FAV NOTE.</Heading>
     <SubHeading small>Your new favourite online notes experience</SubHeading>
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={({ username, password }) => {
-        axios
-          .post('http://localhost:9000/api/user/login', {
-            username,
-            password,
-          })
-          .then(() => console.log('Login successful'))
-          .catch((err) => console.log(err));
+        authenticate(username, password);
       }}
     >
       {() => (
@@ -67,4 +62,8 @@ const LoginPage = () => (
   </StyledWrapper>
 );
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch) => ({
+  authenticate: (username, password) => dispatch(authenticateAction(username, password)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginPage);
