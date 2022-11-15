@@ -1,12 +1,13 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Heading from '../components/atoms/Heading/Heading';
 import Input from '../components/atoms/Input/Input';
 import Button from '../components/atoms/Button/Button';
 import { authenticateAction } from '../actions';
+import { routes } from '../routes';
 
 const StyledWrapper = styled.div`
   width: 100vw;
@@ -37,7 +38,7 @@ const SubHeading = styled(Heading)`
   font-size: 2rem;
 `;
 
-const LoginPage = ({ authenticate }) => (
+const LoginPage = ({ userID, authenticate }) => (
   <StyledWrapper>
     <Heading>FAV NOTE.</Heading>
     <SubHeading small>Your new favourite online notes experience</SubHeading>
@@ -47,23 +48,31 @@ const LoginPage = ({ authenticate }) => (
         authenticate(username, password);
       }}
     >
-      {() => (
-        <StyledForm>
-          <SubHeading>Log in</SubHeading>
-          <Input as={Field} name="username" type="text" placeholder="login" />
-          <Input as={Field} name="password" type="password" placeholder="password" />
-          <Button activeColor="notes" type="submit">
-            Log in
-          </Button>
-          <NavLink to="/register">I want to register</NavLink>
-        </StyledForm>
-      )}
+      {() => {
+        if (userID) {
+          return <Navigate to={routes.home} />;
+        }
+        return (
+          <StyledForm>
+            <Input as={Field} name="username" type="text" placeholder="login" />
+            <Input as={Field} name="password" type="password" placeholder="password" />
+            <Button activeColor="notes" type="submit">
+              Log in
+            </Button>
+            <NavLink to="/register">I want to register</NavLink>
+          </StyledForm>
+        );
+      }}
     </Formik>
   </StyledWrapper>
 );
+
+const mapStateToProps = ({ userID = null }) => ({
+  userID,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   authenticate: (username, password) => dispatch(authenticateAction(username, password)),
 });
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

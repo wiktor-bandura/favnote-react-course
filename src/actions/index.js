@@ -37,7 +37,7 @@ export const authenticateAction = (username, password) => (dispatch) => {
   dispatch({ type: AUTH_REQUEST });
 
   axios
-    .post('http://localhost:9000/api/user/login', {
+    .post('http://localhost:9000/api/user/login/', {
       username,
       password,
     })
